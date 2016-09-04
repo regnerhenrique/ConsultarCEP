@@ -1,0 +1,34 @@
+﻿@model WebServiceTeste.Models.Endereco
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Web Service</h1>
+    <p>Consultando CEP nos Correios</p>
+</div>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post)){
+    <div class="container">
+        <div class="form-group col-md-3">
+            <div class="input-group">
+                @Html.ValidationSummary(true, "", new { @class = "danger" })
+                @Html.TextBoxFor(m => m.Cep, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <input type="submit" value="Buscar" class="btn btn-default" />
+                </span>
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @{
+        if (ViewBag.Endereco != null)
+        {
+            @ViewBag.Endereco.Complemento
+            @ViewBag.Endereco.Bairro
+            @ViewBag.Endereco.Cidade
+            @ViewBag.Endereco.Estado
+        }
+    }
+</div>
